@@ -1,0 +1,117 @@
+<section class="lp-login-shell">
+<div class="container py-4 py-md-4">
+<div class="row justify-content-center align-items-center">
+    <div class="col-12 col-md-9 col-lg-7 col-xl-5">
+      <div class="lp-login-card">
+
+          <a routerLink="/" class="lp-back-btn" aria-label="Volver">
+            <i class="bi bi-arrow-left"></i>
+          </a>
+
+          <div class="lp-login-header">
+            <span class="lp-welcome-text">Bienvenido de nuevo</span>
+            <h1 class="lp-login-title">Iniciar sesión</h1>
+            <p class="lp-login-subtitle">
+              Ingresa a tu cuenta para continuar tu experiencia en LovePaws.
+            </p>
+          </div>
+
+          <div *ngIf="errorMessage" class="alert alert-danger lp-alert">
+            {{ errorMessage }}
+          </div>
+
+          <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <div class="mb-4">
+              <label class="lp-label">Correo o usuario</label>
+
+              <div class="lp-input-wrapper">
+                <span class="lp-input-icon">
+                  <i class="bi bi-person"></i>
+                </span>
+
+                <input
+                  type="text"
+                  class="form-control lp-input"
+                  formControlName="identifier"
+                  placeholder="Correo o usuario" />
+              </div>
+
+              <small
+                class="text-danger"
+                *ngIf="form.get('identifier')?.touched && form.get('identifier')?.invalid">
+                Este campo es obligatorio.
+              </small>
+            </div>
+
+            <div class="mb-3">
+              <label class="lp-label">Contraseña</label>
+
+              <div class="lp-input-wrapper">
+                <span class="lp-input-icon">
+                  <i class="bi bi-lock"></i>
+                </span>
+
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  class="form-control lp-input lp-input-password"
+                  formControlName="password"
+                  placeholder="Contraseña" />
+
+                <button
+                  type="button"
+                  class="lp-toggle-password"
+                  (click)="togglePassword()"
+                  [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+                  <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+                </button>
+              </div>
+
+              <small
+                class="text-danger d-block"
+                *ngIf="form.get('password')?.touched && form.get('password')?.hasError('required')">
+                La contraseña es obligatoria.
+              </small>
+
+              <small
+                class="text-danger d-block"
+                *ngIf="form.get('password')?.touched && form.get('password')?.hasError('minlength')">
+                La contraseña debe tener al menos 6 caracteres.
+              </small>
+            </div>
+
+            <div class="lp-login-options">
+              <div class="form-check">
+                <input
+                  id="remember"
+                  class="form-check-input"
+                  type="checkbox"
+                  formControlName="remember" />
+                <label class="form-check-label" for="remember">
+                  Recuérdame
+                </label>
+              </div>
+
+           <a href="javascript:void(0)" class="lp-link">¿Olvidaste tu contraseña?</a>
+          
+            </div>
+
+            <button class="btn lp-login-btn w-100" type="submit" [disabled]="loading">
+              <i class="bi bi-box-arrow-in-right me-2"></i>
+              {{ loading ? 'Ingresando...' : 'Iniciar sesión' }}
+            </button>
+
+            <div class="lp-divider">
+              <span>o</span>
+            </div>
+
+            <p class="lp-register-text">
+              ¿No tienes cuenta?
+               <a href="javascript:void(0)" class="lp-link fw-semibold">Regístrate</a>
+            </p>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

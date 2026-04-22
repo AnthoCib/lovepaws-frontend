@@ -1,0 +1,67 @@
+<section class="container">
+  <div class="lp-hero-card">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <span class="lp-badge-soft">Bienvenido a LovePaws</span>
+        <h1 class="lp-hero-title mt-3">
+          Una nueva experiencia para conectar mascotas con hogares llenos de amor.
+        </h1>
+        <p class="lp-hero-text">
+          Ya tienes el módulo de autenticación funcionando. El siguiente paso es explorar
+          el catálogo de mascotas y preparar el flujo de adopción.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a routerLink="/mascotas" class="btn lp-btn-primary">
+            Ver mascotas
+          </a>
+          <a href="javascript:void(0)" class="btn lp-btn-outline disabled">
+            Próximamente: adopciones
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="lp-hero-visual">
+          <div class="lp-hero-circle"></div>
+          <div class="lp-hero-card-mini shadow-sm">
+            <h5 class="mb-3 fw-bold">Tu sesión</h5>
+            <p><strong>Usuario:</strong> {{ user?.username || 'Sin dato' }}</p>
+            <p><strong>Correo:</strong> {{ user?.correo || 'Sin dato' }}</p>
+            <p><strong>Nombre:</strong> {{ user?.nombreCompleto || 'Sin dato' }}</p>
+            <p class="mb-0"><strong>Roles:</strong> {{ user?.roles?.join(', ') || 'Sin rol' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mt-1">
+    <div class="col-md-4">
+      <div class="lp-info-card h-100">
+        <h5 class="fw-bold mb-2">Autenticación lista</h5>
+        <p class="text-muted mb-0">
+          JWT, guards, interceptor y recuperación de perfil funcionando correctamente.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="lp-info-card h-100">
+        <h5 class="fw-bold mb-2">Base visual creada</h5>
+        <p class="text-muted mb-0">
+          Ya tienes navbar, layout principal y dashboard listos para seguir escalando módulos.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="lp-info-card h-100">
+        <h5 class="fw-bold mb-2">Siguiente módulo</h5>
+        <p class="text-muted mb-0">
+          El catálogo de mascotas será el primer módulo visual fuerte dentro del nuevo frontend.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

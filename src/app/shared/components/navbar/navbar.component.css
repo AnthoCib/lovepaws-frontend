@@ -1,0 +1,92 @@
+.lp-navbar {
+  background: linear-gradient(135deg, #0d6efd, #4f8cff);
+  padding: 0.95rem 0;
+  box-shadow: 0 10px 30px rgba(13, 110, 253, 0.16);
+}
+
+.lp-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.lp-brand-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.18);
+  font-size: 1rem;
+}
+
+.lp-nav-links .nav-link {
+  color: rgba(255,255,255,0.88);
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.lp-nav-links .nav-link:hover,
+.lp-nav-links .nav-link.active {
+  color: #fff;
+  background: rgba(255,255,255,0.14);
+}
+
+.lp-nav-links .nav-link.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.lp-user-box {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: #fff;
+}
+
+.lp-user-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #0d6efd;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lp-user-meta {
+  line-height: 1.1;
+}
+
+.lp-user-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.lp-user-role {
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+
+.lp-btn-logout {
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.45);
+  color: #fff;
+  background: transparent;
+  font-weight: 600;
+  padding: 0.5rem 0.95rem;
+}
+
+.lp-btn-logout:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}

@@ -1,0 +1,55 @@
+<nav class="lp-navbar navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand lp-brand" routerLink="/dashboard">
+      <span class="lp-brand-icon">❤</span>
+      <span>LovePaws</span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 lp-nav-links">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/mascotas" routerLinkActive="active">Mascotas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/adopciones/mis-solicitudes" routerLinkActive="active">Adopciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="javascript:void(0)">Seguimientos</a>
+        </li>
+      </ul>
+
+      <div class="lp-user-box">
+        <div class="lp-user-avatar">
+          {{ (user?.nombreCompleto || user?.username || 'U').charAt(0).toUpperCase() }}
+        </div>
+
+        <div class="lp-user-meta">
+          <div class="lp-user-name">
+            {{ user?.nombreCompleto || user?.username || 'Usuario' }}
+          </div>
+          <div class="lp-user-role">
+            {{ user?.roles?.join(', ') || 'Sin rol' }}
+          </div>
+        </div>
+
+        <button class="btn lp-btn-logout" (click)="logout()">
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

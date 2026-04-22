@@ -1,0 +1,54 @@
+<section class="container">
+  <div class="lp-page-head mb-4">
+    <span class="lp-badge-soft">Mis solicitudes</span>
+    <h1 class="lp-page-title mt-3">Solicitudes de adopción</h1>
+    <p class="lp-page-text">
+      Aquí podrás ver el estado de todas las solicitudes que has enviado.
+    </p>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando solicitudes...
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && solicitudes.length === 0" class="alert alert-secondary">
+    Aún no tienes solicitudes registradas.
+  </div>
+
+  <div class="row g-4" *ngIf="!loading && solicitudes.length > 0">
+    <div class="col-md-6 col-xl-4" *ngFor="let solicitud of solicitudes">
+      <article class="lp-request-card h-100">
+        <img
+          [src]="solicitud.mascota?.fotoUrl || 'https://placehold.co/800x600?text=LovePaws'"
+          class="lp-request-img"
+          [alt]="solicitud.mascota?.nombre || 'Mascota'">
+
+        <div class="p-4">
+          <span class="lp-status-pill static">
+            {{ solicitud.estado?.descripcion || solicitud.estado?.id || 'Sin estado' }}
+          </span>
+
+          <h3 class="fw-bold mt-3 mb-2">
+            {{ solicitud.mascota?.nombre || 'Mascota sin nombre' }}
+          </h3>
+
+          <p class="text-muted mb-3" *ngIf="solicitud.fechaSolicitud">
+            Enviada: {{ solicitud.fechaSolicitud | date:'mediumDate' }}
+          </p>
+
+          <p class="text-muted mb-3">
+            {{ solicitud.motivo || 'Sin motivo adicional.' }}
+          </p>
+
+          <div class="small text-muted" *ngIf="solicitud.observacionRevision">
+            <strong>Observación:</strong> {{ solicitud.observacionRevision }}
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

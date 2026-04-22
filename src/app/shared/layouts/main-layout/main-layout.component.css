@@ -1,0 +1,8 @@
+.lp-main-shell {
+  min-height: calc(100vh - 78px);
+  background:
+    radial-gradient(circle at top left, rgba(13,110,253,0.06), transparent 20%),
+    radial-gradient(circle at top right, rgba(255,111,145,0.07), transparent 20%),
+    #f7f9fc;
+  padding: 2rem 0 3rem;
+}

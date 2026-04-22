@@ -1,0 +1,81 @@
+<section class="container">
+  <div class="mb-4">
+    <a routerLink="/adopciones/mis-solicitudes" class="btn lp-btn-outline btn-sm">
+      ← Volver a mis solicitudes
+    </a>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando detalle de solicitud...
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <ng-container *ngIf="!loading && solicitud as item">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="lp-request-card h-100">
+          <img
+            [src]="item.mascota?.fotoUrl || 'https://placehold.co/800x600?text=LovePaws'"
+            class="lp-request-img"
+            [alt]="item.mascota?.nombre || 'Mascota'">
+
+          <div class="p-4">
+            <span class="lp-status-pill static">
+              {{ item.estado?.descripcion || item.estado?.id || 'Sin estado' }}
+            </span>
+
+            <h2 class="fw-bold mt-3 mb-2">
+              {{ item.mascota?.nombre || 'Mascota sin nombre' }}
+            </h2>
+
+            <p class="text-muted mb-0" *ngIf="item.fechaSolicitud">
+              Enviada: {{ item.fechaSolicitud | date:'medium' }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="lp-form-card">
+          <span class="lp-badge-soft">Detalle de solicitud</span>
+          <h1 class="lp-page-title mt-3">Estado de tu solicitud</h1>
+          <p class="lp-page-text">
+            Aquí puedes revisar la información completa de tu solicitud de adopción.
+          </p>
+
+          <div class="lp-info-row mt-4">
+            <span class="lp-info-label">Estado</span>
+            <span>{{ item.estado?.descripcion || item.estado?.id || 'Sin estado' }}</span>
+          </div>
+
+          <div class="lp-info-row">
+            <span class="lp-info-label">Mascota</span>
+            <span>{{ item.mascota?.nombre || 'Sin nombre' }}</span>
+          </div>
+
+          <div class="lp-info-row" *ngIf="item.fechaSolicitud">
+            <span class="lp-info-label">Fecha de solicitud</span>
+            <span>{{ item.fechaSolicitud | date:'medium' }}</span>
+          </div>
+
+          <div class="mt-4">
+            <h5 class="fw-bold mb-2">Motivo enviado</h5>
+            <p class="text-muted mb-0">
+              {{ item.motivo || 'No registraste un motivo adicional.' }}
+            </p>
+          </div>
+
+          <div class="mt-4" *ngIf="item.observacionRevision">
+            <h5 class="fw-bold mb-2">Observación de revisión</h5>
+            <p class="text-muted mb-0">
+              {{ item.observacionRevision }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>

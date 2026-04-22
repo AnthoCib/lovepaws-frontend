@@ -1,0 +1,93 @@
+<section class="container">
+  <div class="mb-4">
+    <a routerLink="/mascotas" class="btn lp-btn-outline btn-sm">
+      ← Volver al catálogo
+    </a>
+  </div>
+
+  <div *ngIf="loadingMascota" class="alert alert-info">
+    Cargando información de la mascota...
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <ng-container *ngIf="!loadingMascota && mascota as pet">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="lp-pet-summary-card">
+          <img
+            [src]="pet.fotoUrl || 'https://placehold.co/800x600?text=LovePaws'"
+            class="lp-pet-summary-img"
+            [alt]="pet.nombre">
+
+          <div class="p-4">
+            <span class="lp-status-pill static">
+              {{ pet.estadoDescripcion || pet.estadoId }}
+            </span>
+
+            <h2 class="fw-bold mt-3 mb-2">{{ pet.nombre }}</h2>
+            <p class="text-muted mb-3">{{ pet.razaNombre || 'Raza no especificada' }}</p>
+
+            <div class="d-flex flex-wrap gap-2">
+              <span class="lp-chip">{{ pet.categoriaNombre || 'Sin categoría' }}</span>
+              <span class="lp-chip">{{ getSexoLabel(pet.sexo) }}</span>
+              <span class="lp-chip">{{ pet.edad }} año(s)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="lp-form-card">
+          <span class="lp-badge-soft">Solicitud de adopción</span>
+          <h1 class="lp-page-title mt-3">Solicitar adopción</h1>
+          <p class="lp-page-text">
+            Completa este paso para enviar tu interés en adoptar a {{ pet.nombre }}.
+          </p>
+
+          <form [formGroup]="form" (ngSubmit)="submit()" class="mt-4">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Motivo opcional</label>
+              <textarea
+                rows="6"
+                class="form-control lp-textarea"
+                formControlName="motivo"
+                placeholder="Cuéntanos por qué te gustaría adoptar a esta mascota..."></textarea>
+
+              <small
+                class="text-danger d-block"
+                *ngIf="form.get('motivo')?.touched && form.get('motivo')?.hasError('maxlength')">
+                El motivo no debe superar los 500 caracteres.
+              </small>
+            </div>
+
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <button
+                type="submit"
+                class="btn lp-btn-primary px-4"
+                [disabled]="saving || pet.estadoId !== 'DISPONIBLE'">
+                {{ saving ? 'Enviando...' : 'Enviar solicitud' }}
+              </button>
+
+              <a routerLink="/mascotas" class="btn lp-btn-outline px-4">
+                Cancelar
+              </a>
+            </div>
+
+            <div class="mt-3" *ngIf="pet.estadoId !== 'DISPONIBLE'">
+              <small class="text-muted">
+                Esta mascota no está disponible para recibir nuevas solicitudes.
+              </small>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>
