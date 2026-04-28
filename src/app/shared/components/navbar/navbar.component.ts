@@ -17,6 +17,18 @@ export class NavbarComponent {
 
   @Input() user: AuthMeResponse | null = null;
 
+  get isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
+  get isGestor(): boolean {
+    return this.authService.isGestor();
+  }
+
+  get isAdoptante(): boolean {
+    return this.authService.isAdoptante();
+  }
+
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);

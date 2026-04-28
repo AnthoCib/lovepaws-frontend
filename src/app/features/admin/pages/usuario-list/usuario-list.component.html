@@ -1,0 +1,119 @@
+<section class="container">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+      <span class="lp-badge-soft">Administración</span>
+      <h1 class="lp-page-title mt-3 mb-1">Usuarios</h1>
+      <p class="lp-page-text mb-0">
+        Gestiona usuarios, roles y estados del sistema.
+      </p>
+    </div>
+
+    <a routerLink="/admin/usuarios/nuevo" class="btn lp-btn-primary">
+      Nuevo usuario
+    </a>
+  </div>
+
+<div class="lp-filter-card mb-4">
+  <div class="row g-3">
+    <div class="col-lg-5">
+      <label class="form-label fw-semibold">Buscar</label>
+      <input
+        type="text"
+        class="form-control lp-input"
+        [ngModel]="searchText()"
+        (ngModelChange)="searchText.set($event)"
+        placeholder="Buscar por nombre, correo, username, teléfono..." />
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <label class="form-label fw-semibold">Rol</label>
+      <select
+        class="form-select lp-input"
+        [ngModel]="selectedRole()"
+        (ngModelChange)="selectedRole.set($event)">
+        <option value="">Todos</option>
+        <option *ngFor="let rol of availableRoles()" [value]="rol">
+          {{ rol }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <label class="form-label fw-semibold">Estado</label>
+      <select
+        class="form-select lp-input"
+        [ngModel]="selectedStatus()"
+        (ngModelChange)="selectedStatus.set($event)">
+        <option value="">Todos</option>
+        <option *ngFor="let estado of availableStatuses()" [value]="estado">
+          {{ estado }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-lg-1 d-flex align-items-end">
+      <button
+        type="button"
+        class="btn lp-btn-outline w-100"
+        (click)="clearFilters()"
+        [disabled]="!hasActiveFilters()">
+        Limpiar
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-3 small text-muted">
+    Mostrando {{ filteredUsers().length }} de {{ usuarios().length }} usuarios
+  </div>
+</div>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando usuarios...
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && usuarios().length === 0" class="alert alert-secondary">
+    No hay usuarios registrados.
+  </div>
+
+  <div
+    *ngIf="!loading && !errorMessage && usuarios().length > 0 && filteredUsers().length === 0"
+    class="alert alert-warning">
+    No se encontraron usuarios con los filtros aplicados.
+  </div>
+
+  <div class="row g-4" *ngIf="!loading && filteredUsers().length > 0">
+    <div class="col-md-6 col-xl-4" *ngFor="let usuario of filteredUsers()">
+      <article class="lp-user-card h-100">
+        <div class="p-4">
+          <div class="d-flex justify-content-between align-items-start gap-3">
+            <div>
+              <h4 class="fw-bold mb-1">{{ usuario.nombre }}</h4>
+              <p class="text-muted mb-0">{{ usuario.correo }}</p>
+            </div>
+
+            <span class="lp-status-pill static">
+              {{ usuario.estado || 'ACTIVO' }}
+            </span>
+          </div>
+
+          <div class="mt-3 small text-muted">
+            <div><strong>Username:</strong> {{ usuario.username }}</div>
+            <div><strong>Rol:</strong> {{ usuario.rol || 'Sin rol' }}</div>
+            <div><strong>Teléfono:</strong> {{ usuario.telefono || 'No registrado' }}</div>
+            <div><strong>Dirección:</strong> {{ usuario.direccion || 'No registrada' }}</div>
+          </div>
+
+          <div class="d-flex gap-2 mt-4">
+            <a class="btn lp-btn-outline btn-sm" [routerLink]="['/admin/usuarios', usuario.id, 'editar']">
+              Editar
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -18,9 +18,7 @@
       <div class="row g-0">
         <div class="col-lg-5">
           <div class="lp-detail-image-wrap">
-            <img
-              [src]="pet.fotoUrl || 'https://placehold.co/900x700?text=LovePaws'"
-              class="lp-detail-image"
+            <img [src]="pet.fotoUrl || 'https://placehold.co/900x700?text=LovePaws'" class="lp-detail-image"
               [alt]="pet.nombre">
           </div>
         </div>
@@ -47,13 +45,10 @@
             </div>
 
             <div class="d-flex flex-wrap gap-3">
-              <a
-                class="btn lp-btn-primary px-4"
-                [routerLink]="['/adopciones/solicitar', pet.id]"
-                [class.disabled]="pet.estadoId !== 'DISPONIBLE'"
-                [attr.aria-disabled]="pet.estadoId !== 'DISPONIBLE'">
+              <a class="btn lp-btn-primary" [routerLink]="['/adopciones/solicitar']"
+                [queryParams]="{ mascotaId: mascota.id }">
                 Solicitar adopción
-                </a>
+              </a>
 
               <a routerLink="/mascotas" class="btn lp-btn-outline px-4">
                 Seguir explorando

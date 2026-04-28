@@ -1,0 +1,53 @@
+<section class="container">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+      <span class="lp-badge-soft">Administración</span>
+      <h1 class="lp-page-title mt-3 mb-1">Gestores</h1>
+      <p class="lp-page-text mb-0">
+        Lista de usuarios internos con rol gestor.
+      </p>
+    </div>
+
+    <a routerLink="/admin/gestores/nuevo" class="btn lp-btn-primary">
+      Registrar gestor
+    </a>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando gestores...
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && gestores.length === 0" class="alert alert-secondary">
+    No hay gestores registrados.
+  </div>
+
+  <div class="row g-4" *ngIf="!loading && gestores.length > 0">
+    <div class="col-md-6 col-xl-4" *ngFor="let gestor of gestores">
+      <article class="lp-gestor-card h-100">
+        <div class="p-4">
+          <div class="d-flex justify-content-between align-items-start gap-3">
+            <div>
+              <h4 class="fw-bold mb-1">{{ gestor.nombre }}</h4>
+              <p class="text-muted mb-0">{{ gestor.correo }}</p>
+            </div>
+
+            <span class="lp-status-pill static">
+              {{ gestor.estado || 'ACTIVO' }}
+            </span>
+          </div>
+
+          <div class="mt-3 small text-muted">
+            <div><strong>Username:</strong> {{ gestor.username }}</div>
+            <div><strong>Teléfono:</strong> {{ gestor.telefono || 'No registrado' }}</div>
+            <div><strong>Dirección:</strong> {{ gestor.direccion || 'No registrada' }}</div>
+            <div><strong>Rol:</strong> {{ gestor.rol || 'GESTOR' }}</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

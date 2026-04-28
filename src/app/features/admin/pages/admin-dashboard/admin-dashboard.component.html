@@ -1,0 +1,100 @@
+<section class="container">
+  <div class="lp-page-head mb-4">
+    <span class="lp-badge-soft">Administración</span>
+    <h1 class="lp-page-title mt-3">Panel administrativo</h1>
+    <p class="lp-page-text">
+      Gestiona usuarios internos, revisa métricas rápidas y administra el sistema.
+    </p>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando dashboard...
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <ng-container *ngIf="!loading && dashboard as d">
+    <div class="row g-4 mb-4">
+      <div class="col-md-6 col-xl-3">
+        <div class="lp-admin-card">
+          <div class="lp-admin-card-label">Total usuarios</div>
+          <div class="lp-admin-card-value">{{ d.totalUsuarios }}</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <div class="lp-admin-card">
+          <div class="lp-admin-card-label">Total mascotas</div>
+          <div class="lp-admin-card-value">{{ d.totalMascotas }}</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <div class="lp-admin-card">
+          <div class="lp-admin-card-label">Adopciones</div>
+          <div class="lp-admin-card-value">{{ d.adopcionesRegistradas }}</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <div class="lp-admin-card">
+          <div class="lp-admin-card-label">Solicitudes pendientes</div>
+          <div class="lp-admin-card-value">{{ d.solicitudesPendientes }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-md-6 col-xl-4">
+        <div class="lp-admin-card">
+          <div class="lp-admin-card-label">Mascotas disponibles</div>
+          <div class="lp-admin-card-value">{{ d.mascotasDisponibles }}</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-4">
+        <div class="lp-admin-card">
+          <div class="lp-admin-card-label">Mascotas adoptadas</div>
+          <div class="lp-admin-card-value">{{ d.mascotasAdoptadas }}</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-4">
+        <div class="lp-admin-card">
+          <div class="lp-admin-card-label">Solicitudes aprobadas</div>
+          <div class="lp-admin-card-value">{{ d.solicitudesAprobadas }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="lp-admin-panel h-100">
+          <h4 class="fw-bold mb-3">Gestión rápida</h4>
+          <div class="d-flex flex-wrap gap-3">
+            <a routerLink="/admin/gestores/nuevo" class="btn lp-btn-primary">
+              Registrar gestor
+            </a>
+            <a routerLink="/admin/gestores" class="btn lp-btn-outline">
+              Ver gestores
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="lp-admin-panel h-100">
+          <h4 class="fw-bold mb-3">Solicitudes</h4>
+          <p class="text-muted mb-3">
+            Gestiona el flujo operativo de revisión de solicitudes y adopciones.
+          </p>
+          <a routerLink="/gestion/solicitudes" class="btn lp-btn-outline">
+            Ir a gestión de solicitudes
+          </a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>

@@ -1,0 +1,17 @@
+<section class="container">
+  <div class="lp-page-head mb-4">
+    <span class="lp-badge-soft">Administración</span>
+    <h1 class="lp-page-title mt-3">Roles</h1>
+    <p class="lp-page-text">
+      Catálogo de roles disponibles en el sistema.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let rol of roles">
+      <div class="lp-admin-card">
+        <div class="lp-admin-card-value fs-4">{{ rol }}</div>
+      </div>
+    </div>
+  </div>
+</section>

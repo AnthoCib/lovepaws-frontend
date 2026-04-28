@@ -1,0 +1,69 @@
+<section class="container">
+  <div class="mb-4">
+    <a routerLink="/admin/usuarios" class="btn lp-btn-outline btn-sm">
+      ← Volver a usuarios
+    </a>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">Cargando usuario...</div>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <div class="lp-admin-form-card" *ngIf="!loading">
+    <span class="lp-badge-soft">Administración</span>
+    <h1 class="lp-page-title mt-3">Editar usuario</h1>
+
+    <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mt-4">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Nombre</label>
+          <input type="text" class="form-control lp-input" formControlName="nombre">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Correo</label>
+          <input type="email" class="form-control lp-input" formControlName="correo">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Username</label>
+          <input type="text" class="form-control lp-input" formControlName="username">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Teléfono</label>
+          <input type="text" class="form-control lp-input" formControlName="telefono">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Rol</label>
+          <select class="form-select lp-input" formControlName="rolNombre">
+            <option *ngFor="let rol of roles" [value]="rol">{{ rol }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Estado</label>
+          <select class="form-select lp-input" formControlName="estadoId">
+            <option value="ACTIVO">ACTIVO</option>
+            <option value="INACTIVO">INACTIVO</option>
+            <option value="SUSPENDIDO">SUSPENDIDO</option>
+          </select>
+        </div>
+
+        <div class="col-md-12">
+          <label class="form-label fw-semibold">Dirección</label>
+          <input type="text" class="form-control lp-input" formControlName="direccion">
+        </div>
+      </div>
+
+      <div class="d-flex gap-3 mt-4">
+        <button type="submit" class="btn lp-btn-primary" [disabled]="saving">
+          {{ saving ? 'Guardando...' : 'Guardar cambios' }}
+        </button>
+        <a routerLink="/admin/usuarios" class="btn lp-btn-outline">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</section>

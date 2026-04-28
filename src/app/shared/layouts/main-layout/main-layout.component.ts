@@ -15,5 +15,5 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 export class MainLayoutComponent {
   private authService = inject(AuthService);
 
-  user: AuthMeResponse | null = this.authService.getStoredUser<AuthMeResponse>();
+  user: AuthMeResponse | null = this.authService.getStoredUser();
 }

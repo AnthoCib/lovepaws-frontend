@@ -1,0 +1,152 @@
+.lp-badge-soft {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.lp-page-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.08;
+  font-weight: 800;
+  color: #1d2736;
+}
+
+.lp-page-text {
+  color: #61707c;
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.lp-filter-card,
+.lp-solicitud-card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 16px 36px rgba(22, 34, 51, 0.08);
+}
+
+.lp-filter-card {
+  padding: 1.4rem;
+}
+
+.lp-solicitud-card {
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.lp-solicitud-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 44px rgba(22, 34, 51, 0.12);
+}
+
+.lp-solicitud-card-body {
+  padding: 1.35rem;
+}
+
+.lp-input {
+  min-height: 48px;
+  border-radius: 16px;
+  border: 1px solid #d8dde6;
+  box-shadow: none;
+}
+
+.lp-input:focus {
+  border-color: #7a74ff;
+  box-shadow: 0 0 0 0.2rem rgba(90, 84, 249, 0.1);
+}
+
+.lp-status-pill.static {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(13, 110, 253, 0.08);
+  color: #0d6efd;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.lp-solicitud-code {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #6b7785;
+}
+
+.lp-solicitud-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1d2736;
+  margin-bottom: 1rem;
+}
+
+.lp-solicitud-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.lp-solicitud-dates {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.lp-meta-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #7b8794;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.lp-solicitud-message p {
+  color: #556270;
+  line-height: 1.6;
+}
+
+.lp-btn-primary,
+.lp-btn-outline {
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 0.8rem 1.2rem;
+}
+
+.lp-btn-primary {
+  background: #0d6efd;
+  border: 1px solid #0d6efd;
+  color: #fff;
+}
+
+.lp-btn-primary:hover {
+  background: #0b5ed7;
+  color: #fff;
+}
+
+.lp-btn-outline {
+  background: #fff;
+  border: 1px solid #d0d7e2;
+  color: #1d2736;
+}
+.lp-solicitud-image-wrap {
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.lp-solicitud-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 767.98px) {
+  .lp-solicitud-meta {
+    grid-template-columns: 1fr;
+  }
+}

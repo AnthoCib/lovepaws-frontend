@@ -21,16 +21,42 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Inicio</a>
         </li>
-        <li class="nav-item">
+
+        <!-- ADOPTANTE -->
+        <li class="nav-item" *ngIf="isAdoptante">
           <a class="nav-link" routerLink="/mascotas" routerLinkActive="active">Mascotas</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/adopciones/mis-solicitudes" routerLinkActive="active">Adopciones</a>
+
+        <li class="nav-item" *ngIf="isAdoptante">
+          <a class="nav-link" routerLink="/adopciones/mis-solicitudes" routerLinkActive="active">Mis solicitudes</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="javascript:void(0)">Seguimientos</a>
+
+        <!-- GESTOR -->
+        <li class="nav-item" *ngIf="isGestor">
+          <a class="nav-link" routerLink="/gestion/solicitudes" routerLinkActive="active">Gestionar solicitudes</a>
         </li>
+
+        <!-- ADMIN -->
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link" routerLink="/admin/gestores" routerLinkActive="active">Gestores</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link" routerLink="/admin/gestores/nuevo" routerLinkActive="active">Registrar gestor</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link" routerLink="/admin/usuarios" routerLinkActive="active">Usuarios</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link" routerLink="/admin/roles" routerLinkActive="active">Roles</a>
+      </li>
       </ul>
+      
 
       <div class="lp-user-box">
         <div class="lp-user-avatar">

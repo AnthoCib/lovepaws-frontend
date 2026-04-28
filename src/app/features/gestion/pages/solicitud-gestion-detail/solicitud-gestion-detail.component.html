@@ -1,0 +1,94 @@
+<section class="container lp-detail-container">
+  <div class="mb-3">
+    <a routerLink="/gestion/solicitudes" class="btn lp-btn-outline btn-sm">
+      ← Volver a solicitudes
+    </a>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Cargando detalle...
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <ng-container *ngIf="!loading && solicitud as item">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5">
+        <div class="lp-request-card lp-compact-card">
+          <div class="p-4">
+            <span class="lp-status-pill static">
+              {{ item.estado }}
+            </span>
+
+            <h2 class="fw-bold mt-3 mb-3">
+              Solicitud #{{ item.id }}
+            </h2>
+
+            <div class="small text-muted lp-detail-meta">
+              <div><strong>Adoptante ID:</strong> {{ item.adoptanteId }}</div>
+              <div><strong>Mascota ID:</strong> {{ item.mascotaId }}</div>
+              <div *ngIf="item.fechaCreacion"><strong>Fecha creación:</strong> {{ item.fechaCreacion | date:'medium' }}</div>
+              <div *ngIf="item.fechaActualizacion"><strong>Fecha actualización:</strong> {{ item.fechaActualizacion | date:'medium' }}</div>
+            </div>
+
+            <div class="mt-4">
+              <h6 class="fw-bold mb-2">Mensaje del solicitante</h6>
+              <p class="text-muted mb-0">
+                {{ item.mensaje || 'Sin mensaje adicional.' }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="lp-form-card lp-compact-card">
+          <span class="lp-badge-soft">Gestión</span>
+          <h1 class="lp-page-title mt-3">Gestionar solicitud</h1>
+          <p class="lp-page-text">
+            Registra una observación y decide si aceptas o rechazas la solicitud.
+          </p>
+
+          <form [formGroup]="form" class="mt-4">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Comentario</label>
+              <textarea
+                rows="4"
+                class="form-control lp-input"
+                formControlName="comentario"
+                placeholder="Escribe una observación interna..."></textarea>
+            </div>
+
+            <div class="d-flex flex-wrap gap-3 mt-4" *ngIf="puedeGestionarse">
+              <button
+                type="button"
+                class="btn lp-btn-success"
+                (click)="aceptarSolicitud()"
+                [disabled]="saving">
+                {{ saving ? 'Procesando...' : 'Aceptar solicitud' }}
+              </button>
+
+              <button
+                type="button"
+                class="btn lp-btn-danger"
+                (click)="rechazarSolicitud()"
+                [disabled]="saving">
+                {{ saving ? 'Procesando...' : 'Rechazar solicitud' }}
+              </button>
+            </div>
+
+            <div class="alert alert-secondary mt-3 mb-0" *ngIf="!puedeGestionarse">
+              Esta solicitud ya no se puede gestionar desde esta pantalla porque su estado actual es <strong>{{ item.estado }}</strong>.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>

@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ApiErrorResponse } from '../../../../core/models/auth.models';
-import { SolicitudAdopcionDetail } from '../../../../core/models/adopcion.models';
-import { AdopcionService } from '../../../../core/services/adopcion.service';
+import { SolicitudAdopcionResponse } from '../../../../core/models/adopcion-solicitud.models';
+import { AdopcionSolicitudService } from '../../../../core/services/adopcion-solicitud.service';
 
 @Component({
   selector: 'app-solicitud-detail',
@@ -14,23 +14,22 @@ import { AdopcionService } from '../../../../core/services/adopcion.service';
 })
 export class SolicitudDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private adopcionService = inject(AdopcionService);
+  private adopcionSolicitudService = inject(AdopcionSolicitudService);
 
-  solicitud: SolicitudAdopcionDetail | null = null;
+  solicitud: SolicitudAdopcionResponse | null = null;
   loading = true;
   errorMessage = '';
 
   ngOnInit(): void {
-    const rawId = this.route.snapshot.paramMap.get('id');
-    const id = Number(rawId);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    if (!rawId || Number.isNaN(id) || id <= 0) {
+    if (!id || Number.isNaN(id) || id <= 0) {
       this.errorMessage = 'Id de solicitud inválido.';
       this.loading = false;
       return;
     }
 
-    this.adopcionService.detalle(id).subscribe({
+    this.adopcionSolicitudService.detalle(id).subscribe({
       next: (data) => {
         this.solicitud = data;
         this.loading = false;

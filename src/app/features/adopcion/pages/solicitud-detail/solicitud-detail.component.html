@@ -6,7 +6,7 @@
   </div>
 
   <div *ngIf="loading" class="alert alert-info">
-    Cargando detalle de solicitud...
+    Cargando detalle...
   </div>
 
   <div *ngIf="errorMessage" class="alert alert-danger">
@@ -40,39 +40,50 @@
 
       <div class="col-lg-7">
         <div class="lp-form-card">
-          <span class="lp-badge-soft">Detalle de solicitud</span>
-          <h1 class="lp-page-title mt-3">Estado de tu solicitud</h1>
+          <span class="lp-badge-soft">Adopción</span>
+          <h1 class="lp-page-title mt-3">Detalle de solicitud</h1>
           <p class="lp-page-text">
-            Aquí puedes revisar la información completa de tu solicitud de adopción.
+            Aquí puedes revisar toda la información de tu solicitud enviada.
           </p>
 
-          <div class="lp-info-row mt-4">
-            <span class="lp-info-label">Estado</span>
-            <span>{{ item.estado?.descripcion || item.estado?.id || 'Sin estado' }}</span>
+          <div class="lp-info-block mt-4">
+            <h5 class="fw-bold">¿Por qué deseas adoptar?</h5>
+            <p class="text-muted mb-0">{{ item.pqAdoptar || 'No registrado.' }}</p>
           </div>
 
-          <div class="lp-info-row">
-            <span class="lp-info-label">Mascota</span>
-            <span>{{ item.mascota?.nombre || 'Sin nombre' }}</span>
+          <div class="lp-info-block mt-4">
+            <h5 class="fw-bold">Tiempo dedicado</h5>
+            <p class="text-muted mb-0">{{ item.tiempoDedicado || 'No registrado.' }}</p>
           </div>
 
-          <div class="lp-info-row" *ngIf="item.fechaSolicitud">
-            <span class="lp-info-label">Fecha de solicitud</span>
-            <span>{{ item.fechaSolicitud | date:'medium' }}</span>
+          <div class="lp-info-block mt-4">
+            <h5 class="fw-bold">Cobertura de gastos</h5>
+            <p class="text-muted mb-0">{{ item.cubrirCostos || 'No registrado.' }}</p>
           </div>
 
-          <div class="mt-4">
-            <h5 class="fw-bold mb-2">Motivo enviado</h5>
-            <p class="text-muted mb-0">
-              {{ item.motivo || 'No registraste un motivo adicional.' }}
-            </p>
+          <div class="lp-info-block mt-4">
+            <h5 class="fw-bold">Plan para la mascota</h5>
+            <p class="text-muted mb-0">{{ item.planMascota || 'No registrado.' }}</p>
           </div>
 
-          <div class="mt-4" *ngIf="item.observacionRevision">
-            <h5 class="fw-bold mb-2">Observación de revisión</h5>
-            <p class="text-muted mb-0">
-              {{ item.observacionRevision }}
-            </p>
+          <div class="lp-info-block mt-4">
+            <h5 class="fw-bold">Tipo de vivienda</h5>
+            <p class="text-muted mb-0">{{ item.tipoVivienda || 'No registrado.' }}</p>
+          </div>
+
+          <div class="lp-info-block mt-4">
+            <h5 class="fw-bold">Experiencia</h5>
+            <p class="text-muted mb-0">{{ item.experiencia || 'No registrada.' }}</p>
+          </div>
+
+          <div class="lp-info-block mt-4">
+            <h5 class="fw-bold">Niños u otras mascotas</h5>
+            <p class="text-muted mb-0">{{ item.ninosOtraMascotas || 'No registrado.' }}</p>
+          </div>
+
+          <div class="lp-info-block mt-4">
+            <h5 class="fw-bold">Información adicional</h5>
+            <p class="text-muted mb-0">{{ item.infoAdicional || 'No registrada.' }}</p>
           </div>
         </div>
       </div>

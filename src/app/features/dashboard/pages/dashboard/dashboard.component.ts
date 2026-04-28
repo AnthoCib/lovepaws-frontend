@@ -14,5 +14,5 @@ import { AuthService } from '../../../../core/services/auth.service';
 export class DashboardComponent {
   private authService = inject(AuthService);
 
-  user: AuthMeResponse | null = this.authService.getStoredUser<AuthMeResponse>();
+  user: AuthMeResponse | null = this.authService.getStoredUser();
 }

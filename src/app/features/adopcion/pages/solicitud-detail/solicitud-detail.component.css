@@ -10,7 +10,6 @@
   width: 100%;
   height: 300px;
   object-fit: cover;
-  display: block;
 }
 
 .lp-form-card {
@@ -37,7 +36,7 @@
 
 .lp-page-text {
   color: #61707c;
-  line-height: 1.75;
+  line-height: 1.7;
   font-size: 1rem;
 }
 
@@ -53,31 +52,15 @@
   font-weight: 700;
 }
 
-.lp-info-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid #eef2f6;
-}
-
-.lp-info-row:last-child {
-  border-bottom: 0;
-}
-
-.lp-info-label {
-  font-weight: 700;
-  color: #1d2736;
+.lp-info-block p {
+  line-height: 1.75;
 }
 
 .lp-btn-outline {
+  border-radius: 999px;
   background: #fff;
   border: 1px solid #d0d7e2;
   color: #1d2736;
-  border-radius: 999px;
   font-weight: 700;
-}
-
-.lp-btn-outline:hover {
-  background: #f7f9fc;
+  padding: 0.8rem 1.2rem;
 }

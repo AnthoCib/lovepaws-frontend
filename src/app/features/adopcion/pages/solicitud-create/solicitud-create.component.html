@@ -1,0 +1,164 @@
+<section class="container">
+  <div class="mb-4">
+    <a routerLink="/mascotas" class="btn lp-btn-outline btn-sm">
+      ← Volver a mascotas
+    </a>
+  </div>
+
+  <div class="lp-adopcion-form-card">
+    <span class="lp-badge-soft">Adopción</span>
+    <h1 class="lp-page-title mt-3">Solicitud de adopción</h1>
+    <p class="lp-page-text">
+      Completa este formulario para postular a la adopción de la mascota seleccionada.
+    </p>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="alert alert-success mt-3">
+      {{ successMessage }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mt-4" novalidate>
+      <div class="row g-3">
+        <div class="col-md-12">
+          <label class="form-label fw-semibold">¿Por qué deseas adoptar?</label>
+          <textarea
+            rows="4"
+            class="form-control lp-input"
+            formControlName="pqAdoptar"
+            placeholder="Cuéntanos por qué quieres adoptar esta mascota"></textarea>
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('pqAdoptar')?.touched && form.get('pqAdoptar')?.hasError('required')">
+            Este campo es obligatorio.
+          </small>
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('pqAdoptar')?.touched && form.get('pqAdoptar')?.hasError('minlength')">
+            Debe tener al menos 10 caracteres.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">¿Cuánto tiempo podrías dedicarle?</label>
+          <textarea
+            rows="3"
+            class="form-control lp-input"
+            formControlName="tiempoDedicado"
+            placeholder="Describe cuánto tiempo tendrás disponible"></textarea>
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('tiempoDedicado')?.touched && form.get('tiempoDedicado')?.hasError('required')">
+            Este campo es obligatorio.
+          </small>
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('tiempoDedicado')?.touched && form.get('tiempoDedicado')?.hasError('minlength')">
+            Debe tener al menos 5 caracteres.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">¿Cómo cubrirías sus gastos?</label>
+          <textarea
+            rows="3"
+            class="form-control lp-input"
+            formControlName="cubrirCostos"
+            placeholder="Explícanos cómo cubrirías alimentación, salud y cuidados"></textarea>
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('cubrirCostos')?.touched && form.get('cubrirCostos')?.hasError('required')">
+            Este campo es obligatorio.
+          </small>
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('cubrirCostos')?.touched && form.get('cubrirCostos')?.hasError('minlength')">
+            Debe tener al menos 5 caracteres.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">¿Qué plan tendrías para la mascota?</label>
+          <textarea
+            rows="3"
+            class="form-control lp-input"
+            formControlName="planMascota"
+            placeholder="Cuéntanos cómo sería su adaptación y rutina"></textarea>
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('planMascota')?.touched && form.get('planMascota')?.hasError('required')">
+            Este campo es obligatorio.
+          </small>
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('planMascota')?.touched && form.get('planMascota')?.hasError('minlength')">
+            Debe tener al menos 5 caracteres.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Tipo de vivienda</label>
+          <input
+            type="text"
+            class="form-control lp-input"
+            formControlName="tipoVivienda"
+            placeholder="Ej. Casa, departamento, alquiler, propia..." />
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('tipoVivienda')?.touched && form.get('tipoVivienda')?.hasError('required')">
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Experiencia con mascotas</label>
+          <input
+            type="text"
+            class="form-control lp-input"
+            formControlName="experiencia"
+            placeholder="Ej. He cuidado perros desde niño" />
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('experiencia')?.touched && form.get('experiencia')?.hasError('required')">
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Niños u otras mascotas en casa</label>
+          <input
+            type="text"
+            class="form-control lp-input"
+            formControlName="ninosOtraMascotas"
+            placeholder="Ej. Vivo con dos niños y un gato" />
+          <small
+            class="text-danger d-block mt-1"
+            *ngIf="form.get('ninosOtraMascotas')?.touched && form.get('ninosOtraMascotas')?.hasError('required')">
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="col-md-12">
+          <label class="form-label fw-semibold">Información adicional</label>
+          <textarea
+            rows="3"
+            class="form-control lp-input"
+            formControlName="infoAdicional"
+            placeholder="Agrega cualquier información adicional que consideres importante"></textarea>
+        </div>
+      </div>
+
+      <div class="d-flex flex-wrap gap-3 mt-4">
+        <button type="submit" class="btn lp-btn-primary" [disabled]="saving">
+          {{ saving ? 'Enviando...' : 'Enviar solicitud' }}
+        </button>
+
+        <a routerLink="/mascotas" class="btn lp-btn-outline">
+          Cancelar
+        </a>
+      </div>
+    </form>
+  </div>
+</section>

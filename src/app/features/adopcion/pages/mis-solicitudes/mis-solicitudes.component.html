@@ -1,9 +1,9 @@
 <section class="container">
-  <div class="lp-page-head mb-4">
-    <span class="lp-badge-soft">Mis solicitudes</span>
-    <h1 class="lp-page-title mt-3">Solicitudes de adopción</h1>
+  <div class="mb-4">
+    <span class="lp-badge-soft">Adopción</span>
+    <h1 class="lp-page-title mt-3">Mis solicitudes</h1>
     <p class="lp-page-text">
-      Aquí podrás ver el estado de todas las solicitudes que has enviado.
+      Revisa el estado de tus postulaciones enviadas.
     </p>
   </div>
 
@@ -15,38 +15,36 @@
     {{ errorMessage }}
   </div>
 
-  <div *ngIf="!loading && !errorMessage && solicitudes.length === 0" class="alert alert-secondary">
-    Aún no tienes solicitudes registradas.
+  <div *ngIf="!loading && solicitudes.length === 0" class="alert alert-secondary">
+    Aún no has enviado solicitudes.
   </div>
 
   <div class="row g-4" *ngIf="!loading && solicitudes.length > 0">
     <div class="col-md-6 col-xl-4" *ngFor="let solicitud of solicitudes">
-      <article class="lp-request-card h-100">
-        <img
-          [src]="solicitud.mascota?.fotoUrl || 'https://placehold.co/800x600?text=LovePaws'"
-          class="lp-request-img"
-          [alt]="solicitud.mascota?.nombre || 'Mascota'">
+      <article class="lp-solicitud-card h-100">
+        <div class="lp-solicitud-image-wrap" *ngIf="solicitud.mascota?.fotoUrl">
+          <img
+            [src]="solicitud.mascota?.fotoUrl"
+            [alt]="solicitud.mascota?.nombre || 'Mascota'"
+            class="lp-solicitud-image" />
+        </div>
 
-        <div class="p-4">
+        <div class="lp-solicitud-card-body">
           <span class="lp-status-pill static">
             {{ solicitud.estado?.descripcion || solicitud.estado?.id || 'Sin estado' }}
           </span>
 
-          <h3 class="fw-bold mt-3 mb-2">
+          <h4 class="lp-solicitud-title mt-3">
             {{ solicitud.mascota?.nombre || 'Mascota sin nombre' }}
-          </h3>
+          </h4>
 
-          <p class="text-muted mb-3" *ngIf="solicitud.fechaSolicitud">
-            Enviada: {{ solicitud.fechaSolicitud | date:'mediumDate' }}
+          <p class="text-muted small mb-3" *ngIf="solicitud.fechaSolicitud">
+            {{ solicitud.fechaSolicitud | date:'mediumDate' }}
           </p>
 
-          <p class="text-muted mb-3">
-            {{ solicitud.motivo || 'Sin motivo adicional.' }}
-          </p>
-
-          <div class="small text-muted" *ngIf="solicitud.observacionRevision">
-            <strong>Observación:</strong> {{ solicitud.observacionRevision }}
-          </div>
+          <a class="btn lp-btn-primary w-100" [routerLink]="['/adopciones/mis-solicitudes', solicitud.id]">
+            Ver detalle
+          </a>
         </div>
       </article>
     </div>

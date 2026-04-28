@@ -1,0 +1,91 @@
+<section class="container">
+  <div class="mb-4">
+    <a routerLink="/admin" class="btn lp-btn-outline btn-sm">
+      ← Volver al panel admin
+    </a>
+  </div>
+
+  <div class="lp-admin-form-card">
+    <span class="lp-badge-soft">Administración</span>
+    <h1 class="lp-page-title mt-3">Registrar nuevo gestor</h1>
+    <p class="lp-page-text">
+      Crea un nuevo usuario interno con rol gestor para operar solicitudes y adopciones.
+    </p>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="alert alert-success mt-3">
+      {{ successMessage }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mt-4">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Nombre</label>
+          <input type="text" class="form-control lp-input" formControlName="nombre">
+          <small class="text-danger" *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid">
+            El nombre es obligatorio.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Correo</label>
+          <input type="email" class="form-control lp-input" formControlName="correo">
+          <small class="text-danger" *ngIf="form.get('correo')?.touched && form.get('correo')?.hasError('required')">
+            El correo es obligatorio.
+          </small>
+          <small class="text-danger" *ngIf="form.get('correo')?.touched && form.get('correo')?.hasError('email')">
+            El correo no es válido.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Username</label>
+          <input type="text" class="form-control lp-input" formControlName="username">
+          <small class="text-danger" *ngIf="form.get('username')?.touched && form.get('username')?.hasError('required')">
+            El username es obligatorio.
+          </small>
+          <small class="text-danger" *ngIf="form.get('username')?.touched && form.get('username')?.hasError('minlength')">
+            El username debe tener al menos 4 caracteres.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Contraseña</label>
+          <input type="password" class="form-control lp-input" formControlName="password">
+          <small class="text-danger" *ngIf="form.get('password')?.touched && form.get('password')?.hasError('required')">
+            La contraseña es obligatoria.
+          </small>
+          <small class="text-danger" *ngIf="form.get('password')?.touched && form.get('password')?.hasError('minlength')">
+            La contraseña debe tener al menos 3 caracteres.
+          </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Teléfono</label>
+          <input type="text" class="form-control lp-input" formControlName="telefono">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Dirección</label>
+          <input type="text" class="form-control lp-input" formControlName="direccion">
+          <small class="text-danger" *ngIf="form.get('direccion')?.touched && form.get('direccion')?.hasError('minlength')">
+            La dirección debe tener al menos 5 caracteres.
+          </small>
+        </div>
+      </div>
+
+      <div class="d-flex flex-wrap gap-3 mt-4">
+        <button type="submit" class="btn lp-btn-primary" [disabled]="saving">
+          {{ saving ? 'Guardando...' : 'Registrar gestor' }}
+        </button>
+
+        <a routerLink="/admin/gestores" class="btn lp-btn-outline">
+          Cancelar
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
