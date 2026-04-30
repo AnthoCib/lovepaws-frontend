@@ -5,13 +5,14 @@ import {
   GestionSolicitudEstadoRequest,
   GestionSolicitudResponse
 } from '../models/gestion-solicitud.models';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GestionSolicitudService {
   private http = inject(HttpClient);
-  private readonly apiUrl = 'https://lovepaws.onrender.com/api/solicitudes-tracking';
+  private readonly apiUrl = `${environment.apiUrl}/api/solicitudes-tracking`;
 
   listar(estado?: string): Observable<GestionSolicitudResponse[]> {
     let params = new HttpParams();

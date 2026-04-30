@@ -6,13 +6,14 @@ import {
   SolicitudAdopcionResponse,
   SolicitudAdopcionDetail
 } from '../models/adopcion.models';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdopcionService {
   private http = inject(HttpClient);
-  private readonly apiUrl = 'https://lovepaws.onrender.com/api/solicitudes-adopcion';
+  private readonly apiUrl = `${environment.apiUrl}/api/solicitudes-adopcion`;
 
   crear(payload: SolicitudAdopcionCreateRequest): Observable<SolicitudAdopcionResponse> {
     return this.http.post<SolicitudAdopcionResponse>(this.apiUrl, payload);

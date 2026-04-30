@@ -6,6 +6,7 @@ import {
   GestorCreateRequest,
   GestorResponse
 } from '../models/admin.models';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ import {
 export class AdminService {
   private http = inject(HttpClient);
 
-  private readonly dashboardUrl = 'https://lovepaws.onrender.com/api/admin/dashboard';
-  private readonly gestoresUrl = 'https://lovepaws.onrender.com/api/admin/gestores';
+  private readonly dashboardUrl = `${environment.apiUrl}/api/admin/dashboard`;
+  private readonly gestoresUrl = `${environment.apiUrl}/api/admin/gestores`;
 
   getDashboard(): Observable<AdminDashboardResponse> {
     return this.http.get<AdminDashboardResponse>(this.dashboardUrl);

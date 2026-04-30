@@ -4,6 +4,7 @@ import { Observable, switchMap, tap } from 'rxjs';
 
 import { AuthMeResponse, LoginRequest, LoginResponse } from '../models/auth.models';
 import { TokenService } from './token.service';
+import { environment } from '../../../environments/environment';
 
 /**
  * Servicio encargado de manejar la autenticación del usuario.
@@ -36,8 +37,16 @@ export class AuthService {
    */
   private tokenService = inject(TokenService);
 
-
-  private readonly apiUrl = 'https://lovepaws.onrender.com/api/auth';
+  /**
+   * URL base del módulo de autenticación del backend.
+   *
+   * En desarrollo apunta a localhost.
+   *
+   * Endpoints esperados:
+   * - POST http://localhost:8080/api/auth/login
+   * - GET  http://localhost:8080/api/auth/me
+   */
+  private readonly apiUrl = `${environment.apiUrl}/api/auth`;
 
   /**
    * Inicia sesión enviando las credenciales al backend.
