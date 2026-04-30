@@ -14,7 +14,7 @@ import {
 })
 export class AdminUserService {
   private http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:8080/api/admin/usuarios';
+  private readonly apiUrl = 'https://lovepaws.onrender.com/api/admin/usuarios';
 
   listar(): Observable<AdminUserResponse[]> {
     return this.http.get<AdminUserResponse[]>(this.apiUrl);

@@ -8,7 +8,7 @@ import { MascotaDetail, MascotaListItem } from '../models/mascota.models';
 })
 export class MascotaService {
   private http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:8080/api/mascotas';
+  private readonly apiUrl = 'https://lovepaws.onrender.com/api/mascotas';
 
   listar(): Observable<MascotaListItem[]> {
     return this.http.get<MascotaListItem[]>(this.apiUrl);

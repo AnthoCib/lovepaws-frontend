@@ -36,16 +36,8 @@ export class AuthService {
    */
   private tokenService = inject(TokenService);
 
-  /**
-   * URL base del módulo de autenticación del backend.
-   *
-   * En desarrollo apunta a localhost.
-   *
-   * Endpoints esperados:
-   * - POST http://localhost:8080/api/auth/login
-   * - GET  http://localhost:8080/api/auth/me
-   */
-  private readonly apiUrl = 'http://localhost:8080/api/auth';
+
+  private readonly apiUrl = 'https://lovepaws.onrender.com/api/auth';
 
   /**
    * Inicia sesión enviando las credenciales al backend.

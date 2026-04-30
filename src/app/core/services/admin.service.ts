@@ -13,8 +13,8 @@ import {
 export class AdminService {
   private http = inject(HttpClient);
 
-  private readonly dashboardUrl = 'http://localhost:8080/api/admin/dashboard';
-  private readonly gestoresUrl = 'http://localhost:8080/api/admin/gestores';
+  private readonly dashboardUrl = 'https://lovepaws.onrender.com/api/admin/dashboard';
+  private readonly gestoresUrl = 'https://lovepaws.onrender.com/api/admin/gestores';
 
   getDashboard(): Observable<AdminDashboardResponse> {
     return this.http.get<AdminDashboardResponse>(this.dashboardUrl);

@@ -12,7 +12,7 @@ import {
 })
 export class AdopcionService {
   private http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:8080/api/solicitudes-adopcion';
+  private readonly apiUrl = 'https://lovepaws.onrender.com/api/solicitudes-adopcion';
 
   crear(payload: SolicitudAdopcionCreateRequest): Observable<SolicitudAdopcionResponse> {
     return this.http.post<SolicitudAdopcionResponse>(this.apiUrl, payload);

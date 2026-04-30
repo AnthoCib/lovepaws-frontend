@@ -11,7 +11,7 @@ import {
 })
 export class GestionSolicitudService {
   private http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:8080/api/solicitudes-tracking';
+  private readonly apiUrl = 'https://lovepaws.onrender.com/api/solicitudes-tracking';
 
   listar(estado?: string): Observable<GestionSolicitudResponse[]> {
     let params = new HttpParams();
