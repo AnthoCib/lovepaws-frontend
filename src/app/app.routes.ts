@@ -81,26 +81,13 @@ export const routes: Routes = [
           import('./features/adopcion/pages/solicitud-create/solicitud-create.component').then(m => m.SolicitudCreateComponent)
       },
       {
-        path: 'adopciones/mis-solicitudes',
-        canActivate: [roleGuard],
-        data: { roles: ['ADOPTANTE'] },
-        loadComponent: () =>
-          import('./features/adopcion/pages/mis-solicitudes/mis-solicitudes.component').then(m => m.MisSolicitudesComponent)
-      },
-      {
         path: 'adopciones/mis-solicitudes/:id',
         canActivate: [roleGuard],
         data: { roles: ['ADOPTANTE'] },
         loadComponent: () =>
           import('./features/adopcion/pages/solicitud-detail/solicitud-detail.component').then(m => m.SolicitudDetailComponent)
       },
-      {
-        path: 'admin',
-        canActivate: [roleGuard],
-        data: { roles: ['ADMIN'] },
-        loadComponent: () =>
-          import('./features/dashboard/pages/dashboard/dashboard.component').then(m => m.DashboardComponent)
-      }, {
+{
         path: 'admin',
         canActivate: [roleGuard],
         data: { roles: ['ADMIN'] },

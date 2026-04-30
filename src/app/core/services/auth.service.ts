@@ -4,6 +4,7 @@ import { Observable, switchMap, tap } from 'rxjs';
 
 import { AuthMeResponse, LoginRequest, LoginResponse } from '../models/auth.models';
 import { TokenService } from './token.service';
+import { environment } from '../../../environments/environment';
 
 /**
  * Servicio encargado de manejar la autenticación del usuario.
@@ -45,7 +46,7 @@ export class AuthService {
    * - POST http://localhost:8080/api/auth/login
    * - GET  http://localhost:8080/api/auth/me
    */
-  private readonly apiUrl = 'http://localhost:8080/api/auth';
+  private readonly apiUrl = `${environment.apiUrl}/api/auth`;
 
   /**
    * Inicia sesión enviando las credenciales al backend.

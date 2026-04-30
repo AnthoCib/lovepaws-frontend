@@ -8,13 +8,14 @@ import {
   AdminUserStatusUpdateRequest,
   AdminUserUpdateRequest
 } from '../models/admin-user.models';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminUserService {
   private http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:8080/api/admin/usuarios';
+  private readonly apiUrl = `${environment.apiUrl}/api/admin/usuarios`;
 
   listar(): Observable<AdminUserResponse[]> {
     return this.http.get<AdminUserResponse[]>(this.apiUrl);
